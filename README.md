@@ -5,7 +5,9 @@ A Weld Process Management and Monitoring App.
 ## Getting Started
 
 To Try app in Android 
-visit [/build/app/outputs/flutter-apk/app-release.apk](/build/app/outputs/flutter-apk/) and Download *app-release.apk* to install
+visit [/build/app/outputs/flutter-apk/app-release.apk](/build/app/outputs/flutter-apk/)
+
+And - Download [**app-release.apk**](/build/app/outputs/flutter-apk/app-release.apk) to install
 
 
 =======
