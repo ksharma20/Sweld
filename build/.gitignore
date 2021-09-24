@@ -1,0 +1,11 @@
+#Ignores Everything
+*
+
+# But not these files...
+!.gitignore
+
+!/app
+!*/
+
+# if the files to be tracked are in subdirectories
+!*/app/outputs/flutter-apk/*
