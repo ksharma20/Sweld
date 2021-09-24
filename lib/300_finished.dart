@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_file_manager/flutter_file_manager.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
