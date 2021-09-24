@@ -1,9 +1,9 @@
-// @dart=2.9
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_file_manager/flutter_file_manager.dart';
-import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import 'globals.dart';
 //import package files
@@ -37,6 +37,8 @@ class _FinishedWelds extends State<FinishedWelds> {
         // excludedPaths: [Globals.appDir],
         extensions: ["pdf"] //optional, to filter files, list only pdf files
         );
+    // Directory(Globals.appDir).listSync();
+
     setState(() {}); //update the UI
   }
 
@@ -52,7 +54,11 @@ class _FinishedWelds extends State<FinishedWelds> {
         appBar: AppBar(
             title: Text("Finished Welds"), backgroundColor: Colors.redAccent),
         body: files == null
-            ? Text("Searching Files")
+            ? Center(
+                child: Text(
+                "Searching Files",
+                textScaleFactor: 2,
+              ))
             : ListView.builder(
                 //if file/folder list is grabbed, then show here
                 itemCount: files?.length ?? 0,
@@ -63,7 +69,7 @@ class _FinishedWelds extends State<FinishedWelds> {
                     leading: Icon(Icons.picture_as_pdf),
                     trailing: Icon(
                       Icons.arrow_forward,
-                      color: Colors.redAccent,
+                      color: Colors.blueGrey,
                     ),
                     onTap: () {
                       Navigator.push(context,
@@ -80,16 +86,16 @@ class _FinishedWelds extends State<FinishedWelds> {
 
 class ViewPDF extends StatelessWidget {
   final String pathPDF;
-  ViewPDF({@required this.pathPDF});
+  ViewPDF({required this.pathPDF});
 
   @override
   Widget build(BuildContext context) {
-    return PDFViewerScaffold(
+    return Scaffold(
         //view PDF
         appBar: AppBar(
           title: Text("PDF Document Report"),
           backgroundColor: Colors.deepOrangeAccent,
         ),
-        path: pathPDF);
+        body: SfPdfViewer.file(File(pathPDF)));
   }
 }

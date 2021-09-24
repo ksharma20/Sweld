@@ -5,6 +5,14 @@
 
 #Folders
 /.dart_tool
-/build/*
 
-!/build/app/outputs/flutter-apk/
+
+
+#Saving !/build/app/outputs/flutter-apk/ From being ignored
+
+build/*
+!build/app
+build/app/*
+!build/app/outputs
+build/app/outputs/*
+!build/app/outputs/flutter-apk

@@ -1,6 +1,4 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
-// import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sweld/100_home.dart';
 import 'package:sweld/211_weldsetup.dart';
 import 'package:sweld/212_wswelder.dart';
