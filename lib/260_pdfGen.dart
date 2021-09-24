@@ -17,6 +17,14 @@ class _PdfGenState extends State<PdfGen> {
   PdfDocument document = PdfDocument();
 
   @override
+  void initState() {
+    setState(() {
+      Globals.load = Globals.load;
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -112,19 +120,40 @@ class _PdfGenState extends State<PdfGen> {
                       textScaleFactor: 1.3,
                     )),
                     Divider(
-                      height: 35,
+                      height: 15,
+                    ),
+                    Globals.load
+                        ? LinearProgressIndicator(
+                            color: Colors.redAccent,
+                            minHeight: 5,
+                            semanticsLabel: "Pdf Being Generated",
+                          )
+                        : Divider(
+                            thickness: 0,
+                          ),
+                    Divider(
+                      height: 15,
                     ),
                     Container(
                       margin: EdgeInsets.all(10),
                       child: Center(
-                        child: TextButton(
+                        child: ElevatedButton(
                           style: ButtonStyle(
-                            enableFeedback: true,
-                            padding:
-                                MaterialStateProperty.all(EdgeInsets.all(12)),
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.red),
-                          ),
+                              enableFeedback: true,
+                              padding:
+                                  MaterialStateProperty.all(EdgeInsets.all(12)),
+                              backgroundColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.pressed))
+                                  return Colors.redAccent;
+                                return Colors.blueAccent;
+                              }),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                              ))),
                           onPressed: () => createPdf(),
                           child: Text(
                             "Create PDF!",

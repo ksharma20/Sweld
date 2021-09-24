@@ -49,7 +49,21 @@ class _GrindingState extends State<Grinding> {
 
               Globals.saveImg(Globals.gimg1, "gimg1.jpg");
 
+              final snackBar = SnackBar(
+                content: Text(
+                    'PDF Creation Takes Some time, So wait Paitently After Clicking Create PDF'),
+                action: SnackBarAction(
+                  label: 'UnderStood',
+                  onPressed: () {
+                    setState(() {
+                      Globals.load = true;
+                    });
+                  },
+                ),
+              );
               Globals.gotopgf(context);
+
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             child: Text("Finish Weld"),
           ),

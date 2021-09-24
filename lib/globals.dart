@@ -70,8 +70,8 @@ class Globals {
 // Page Number Counter
   static int pageNum = 0;
 
-// ScreenShot controller
-  // static var ssc = ScreenshotController();
+// Loading Screen
+  static bool load = false;
 
 // Image Path for different Pages
   static var wsWimg1;
