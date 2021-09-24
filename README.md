@@ -5,7 +5,7 @@ A Weld Process Management and Monitoring App.
 ## Getting Started
 
 To Contribuute 
-visit [Github.com/ksharma20/Sweld](/)
+visit [Github.com/ksharma20/Sweld](https://www.github.com/ksharma20/Sweld/)
 
 Download [**app-release.apk**](/build/app/outputs/flutter-apk/app-release.apk) to install.
 
