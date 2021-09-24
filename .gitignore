@@ -1,0 +1,20 @@
+#Files
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+
+#Folders
+/.dart_tool
+
+
+
+#Saving !/build/app/outputs/flutter-apk/ From being ignored
+
+build/*
+!build/app
+build/app/*
+!build/app/outputs
+build/app/outputs/*
+!build/app/outputs/flutter-apk
+build/app/outputs/flutter-apk/*
+!build/app/outputs/flutter-apk/app-release.apk
