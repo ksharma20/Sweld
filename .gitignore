@@ -1,0 +1,7 @@
+#Files
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+
+#Folders
+/.dart_tool
