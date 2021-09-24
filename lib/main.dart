@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:sweld/100_home.dart';
 import 'package:sweld/211_weldsetup.dart';
@@ -16,7 +17,7 @@ import 'package:sweld/300_finished.dart';
 void main() => runApp(WeldApp());
 
 class WeldApp extends StatelessWidget {
-  const WeldApp({Key? key}) : super(key: key);
+  // const WeldApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

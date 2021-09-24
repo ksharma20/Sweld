@@ -1,11 +1,10 @@
+// @dart=2.9
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_file_manager/flutter_file_manager.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
 import 'globals.dart';
-//import package files
 
 void main() => runApp(MyApp());
 
@@ -85,7 +84,7 @@ class _FinishedWelds extends State<FinishedWelds> {
 
 class ViewPDF extends StatelessWidget {
   final String pathPDF;
-  ViewPDF({required this.pathPDF});
+  ViewPDF({@required this.pathPDF});
 
   @override
   Widget build(BuildContext context) {

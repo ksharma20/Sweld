@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-// import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sweld/400_manuals.dart';
 import 'package:geolocator/geolocator.dart';
 
