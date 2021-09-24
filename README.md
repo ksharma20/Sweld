@@ -4,12 +4,10 @@ A Weld Process Management and Monitoring App.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To Try app in Android 
+visit [/build/app/outputs/flutter-apk/app-release.apk](/build/app/outputs/flutter-apk/)
 
-A few resources to get you started if this is your first Flutter project:
-
-[Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-[Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+And - Download [**app-release.apk**](/build/app/outputs/flutter-apk/app-release.apk) to install
 
 
 =======
