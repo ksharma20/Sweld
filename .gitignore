@@ -2,9 +2,12 @@
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
+generated_plugin*
 
 #Folders
 /.dart_tool
+/.idea
+/.vscode
 
 
 

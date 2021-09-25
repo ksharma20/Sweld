@@ -23,7 +23,7 @@ class _GrindingState extends State<Grinding> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: null,
+            onPressed: () => Globals.gotoHome(context),
             icon: Icon(Icons.railway_alert),
           ),
         ],

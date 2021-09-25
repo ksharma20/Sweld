@@ -23,8 +23,7 @@ class _WsWelderState extends State<WsWelder> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () =>
-                Navigator.popUntil(context, ModalRoute.withName('/')),
+            onPressed: () => Globals.gotoHome(context),
             icon: Icon(Icons.railway_alert_outlined),
           ),
         ],

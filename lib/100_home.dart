@@ -39,7 +39,20 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: Text("Smart Weld"),
           actions: [
-            IconButton(onPressed: null, icon: Icon(Icons.railway_alert_sharp))
+            // IconButton(
+            //   icon: Icon(
+            //     Icons.refresh_outlined,
+            //     color: Colors.white,
+            //   ),
+            //   onPressed: () {
+            //     setState(() {});
+            //   },
+            // ),
+            IconButton(
+                onPressed: () {
+                  setState(() {});
+                },
+                icon: Icon(Icons.railway_alert_sharp))
           ],
         ),
         drawer: Drawer(
@@ -90,27 +103,27 @@ class _HomeState extends State<Home> {
                   TextButton(
                     onPressed: () {
                       if (Globals.pageNum == 211) {
-                        Navigator.popAndPushNamed(context, "/211");
+                        Navigator.pushNamed(context, "/211");
                       } else if (Globals.pageNum == 212) {
-                        Navigator.popAndPushNamed(context, "/212");
+                        Navigator.pushNamed(context, "/212");
                       } else if (Globals.pageNum == 213) {
-                        Navigator.popAndPushNamed(context, "/213");
+                        Navigator.pushNamed(context, "/213");
                       } else if (Globals.pageNum == 214) {
-                        Navigator.popAndPushNamed(context, "/214");
+                        Navigator.pushNamed(context, "/214");
                       } else if (Globals.pageNum == 215) {
-                        Navigator.popAndPushNamed(context, "/215");
+                        Navigator.pushNamed(context, "/215");
                       } else if (Globals.pageNum == 216) {
-                        Navigator.popAndPushNamed(context, "/216");
+                        Navigator.pushNamed(context, "/216");
                       } else if (Globals.pageNum == 220) {
-                        Navigator.popAndPushNamed(context, "/220");
+                        Navigator.pushNamed(context, "/220");
                       } else if (Globals.pageNum == 230) {
-                        Navigator.popAndPushNamed(context, "/230");
+                        Navigator.pushNamed(context, "/230");
                       } else if (Globals.pageNum == 240) {
-                        Navigator.popAndPushNamed(context, "/240");
+                        Navigator.pushNamed(context, "/240");
                       } else if (Globals.pageNum == 250) {
-                        Navigator.popAndPushNamed(context, "/250");
+                        Navigator.pushNamed(context, "/250");
                       } else {
-                        Navigator.popUntil(context, ModalRoute.withName("/"));
+                        Globals.gotoWs(context);
                       }
                     },
                     child: inPro(),

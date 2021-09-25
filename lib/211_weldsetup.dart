@@ -3,8 +3,14 @@ import 'package:screenshot/screenshot.dart';
 import 'package:sweld/globals.dart';
 import 'package:geolocator/geolocator.dart';
 
-class WeldSetup extends StatelessWidget {
+class WeldSetup extends StatefulWidget {
   WeldSetup({Key? key}) : super(key: key);
+
+  @override
+  State<WeldSetup> createState() => _WeldSetupState();
+}
+
+class _WeldSetupState extends State<WeldSetup> {
   final pageNum = 211;
 
   @override
@@ -16,9 +22,7 @@ class WeldSetup extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: () => Globals.gotoHome(context),
             icon: Icon(Icons.railway_alert_rounded),
           ),
         ],

@@ -1,8 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
-// import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
 import 'globals.dart';
 
 class PdfGen extends StatefulWidget {
@@ -13,6 +11,8 @@ class PdfGen extends StatefulWidget {
 }
 
 class _PdfGenState extends State<PdfGen> {
+  var pageNum = 260;
+
   //Create a new PDF document
   PdfDocument document = PdfDocument();
 
