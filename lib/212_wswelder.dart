@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:sweld/globals.dart';
@@ -100,42 +99,26 @@ class _WsWelderBodyState extends State<WsWelderBody> {
     return Text("$vctr");
   }
 
-  Future getImg1(int op) async {
-    if (op == 1) {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image != null) {
-        setState(() {
-          Globals.wsWimg1 = image.path;
-        });
-      }
-    } else {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        setState(() {
-          Globals.wsWimg1 = image.path;
-        });
-      }
+  Future getImg1() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.wsWimg1 = image.path;
+      });
     }
-    Navigator.pop(context);
+    Globals.dtwsW1 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
-  Future getImg2(int op) async {
-    if (op == 1) {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image != null) {
-        setState(() {
-          Globals.wsWimg2 = image.path;
-        });
-      }
-    } else {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        setState(() {
-          Globals.wsWimg2 = image.path;
-        });
-      }
+  Future getImg2() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.wsWimg2 = image.path;
+      });
     }
-    Navigator.pop(context);
+    Globals.dtwsW2 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
   @override
@@ -298,40 +281,11 @@ class _WsWelderBodyState extends State<WsWelderBody> {
                     height: 10,
                   ),
                   TextButton(
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (builder) => AlertDialog(
-                        title: Text("Select From"),
-                        actions: [
-                          TextButton(
-                            onPressed: () => getImg1(1),
-                            child: Text("Camera"),
-                          ),
-                          TextButton(
-                            onPressed: () => getImg1(2),
-                            child: Text("Gallery"),
-                          ),
-                          Globals.wsWimg1 != null
-                              ? TextButton(
-                                  onPressed: () => showDialog(
-                                      context: context,
-                                      builder: (builder) => AlertDialog(
-                                            title: Text("Image Preview"),
-                                            content: Image.file(
-                                                File(Globals.wsWimg1)),
-                                          )),
-                                  child: Text("Preview"),
-                                )
-                              : Text("Select"),
-                        ],
-                      ),
-                      barrierDismissible: true,
-                      useSafeArea: true,
-                      useRootNavigator: true,
-                    ),
+                    onPressed: () => getImg1(),
                     child: Globals.wsWimg1 == null
-                        ? Text("Select Image")
-                        : Text("Image Uploaded!"),
+                        ? Text("Select Image of Validity certificate of Welder")
+                        : Text(
+                            "Image Uploaded for Validity certificate of Welder!"),
                   ),
                   Divider(
                     thickness: 0,
@@ -395,41 +349,12 @@ class _WsWelderBodyState extends State<WsWelderBody> {
                     height: 10,
                   ),
                   TextButton(
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (builder) => AlertDialog(
-                        title: Text("Select From"),
-                        actions: [
-                          TextButton(
-                            onPressed: () => getImg2(1),
-                            child: Text("Camera"),
-                          ),
-                          TextButton(
-                            onPressed: () => getImg2(2),
-                            child: Text("Gallery"),
-                          ),
-                          Globals.wsWimg2 != null
-                              ? TextButton(
-                                  onPressed: () => showDialog(
-                                      context: context,
-                                      builder: (builder) => AlertDialog(
-                                            title: Text("Image Preview"),
-                                            content: Image.file(
-                                                File(Globals.wsWimg2)),
-                                          )),
-                                  child: Text("Preview"),
-                                )
-                              : Text("Select"),
-                        ],
-                      ),
-                      barrierDismissible: true,
-                      useSafeArea: true,
-                      useRootNavigator: true,
-                    ),
-                    // ignore: unnecessary_null_comparison
+                    onPressed: () => getImg2(),
                     child: Globals.wsWimg2 == null
-                        ? Text("Select Image")
-                        : Text("Image Uploaded!"),
+                        ? Text(
+                            "Select Image of Validity Certificate of supervisor")
+                        : Text(
+                            "Image Uploaded! for Validity certificate of supervisor"),
                   ),
                   Divider(
                     height: 50,

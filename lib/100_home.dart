@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:share/share.dart';
 import 'package:sweld/globals.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
@@ -630,6 +631,12 @@ class ViewPDF extends StatelessWidget {
         //view PDF
         appBar: AppBar(
           title: Text("PDF Document Report"),
+          actions: [
+            IconButton(
+                onPressed: () =>
+                    Share.shareFiles([pathPDF], text: "My PDF Report"),
+                icon: Icon(Icons.share)),
+          ],
           backgroundColor: Colors.deepOrangeAccent,
         ),
         body: SfPdfViewer.file(File(pathPDF)));

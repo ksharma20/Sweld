@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:sweld/globals.dart';
-import 'dart:io';
 
 class WsPortion extends StatefulWidget {
   const WsPortion({Key? key}) : super(key: key);
@@ -82,42 +81,26 @@ class WsPBody extends StatefulWidget {
 }
 
 class _WsPBodyState extends State<WsPBody> {
-  Future getImg1(int op) async {
-    if (op == 1) {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image != null) {
-        setState(() {
-          Globals.wsPimg1 = image.path;
-        });
-      }
-    } else {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        setState(() {
-          Globals.wsPimg1 = image.path;
-        });
-      }
+  Future getImg1() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.wsPimg1 = image.path;
+      });
     }
-    Navigator.pop(context);
+    Globals.dtwsP1 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
-  Future getImg2(int op) async {
-    if (op == 1) {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image != null) {
-        setState(() {
-          Globals.wsPimg2 = image.path;
-        });
-      }
-    } else {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        setState(() {
-          Globals.wsPimg2 = image.path;
-        });
-      }
+  Future getImg2() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.wsPimg2 = image.path;
+      });
     }
-    Navigator.pop(context);
+    Globals.dtwsP2 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
   @override
@@ -191,22 +174,33 @@ class _WsPBodyState extends State<WsPBody> {
                   Divider(
                     height: 5,
                   ),
-                  TextFormField(
-                    initialValue: Globals.datepor,
-                    onChanged: (val) {
-                      setState(() {
-                        Globals.datepor = val;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      labelText: "Date of Portion Manufacture",
-                      // hintText: "within +- 0.5mm",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide: BorderSide(),
-                        gapPadding: 5,
-                      ),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text("Date of Portion Manufacture"),
+                      TextButton(
+                          onPressed: () {
+                            showDatePicker(
+                              initialDatePickerMode: DatePickerMode.year,
+                              initialEntryMode:
+                                  DatePickerEntryMode.calendarOnly,
+                              context: context,
+                              initialDate: DateTime(2019),
+                              firstDate: DateTime(2018),
+                              lastDate: DateTime(2050),
+                            ).then((value) {
+                              if (value != null) {
+                                setState(() {
+                                  var navc = value.toString().split(" ");
+                                  Globals.datepor = navc[0];
+                                });
+                              }
+                            });
+                          },
+                          child: Globals.datepor != null
+                              ? Text(Globals.datepor)
+                              : Text("Select Date"))
+                    ],
                   ),
                   Divider(
                     height: 5,
@@ -316,41 +310,10 @@ class _WsPBodyState extends State<WsPBody> {
                     height: 5,
                   ),
                   TextButton(
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (builder) => AlertDialog(
-                        title: Text("Select Image of Packet From"),
-                        actions: [
-                          TextButton(
-                            onPressed: () => getImg1(1),
-                            child: Text("Camera"),
-                          ),
-                          TextButton(
-                            onPressed: () => getImg1(2),
-                            child: Text("Gallery"),
-                          ),
-                          Globals.wsPimg1 != null
-                              ? TextButton(
-                                  onPressed: () => showDialog(
-                                      context: context,
-                                      builder: (builder) => AlertDialog(
-                                            title: Text("Image Preview"),
-                                            content: Image.file(
-                                                File(Globals.wsPimg1)),
-                                          )),
-                                  child: Text("Preview"),
-                                )
-                              : Text("Select"),
-                        ],
-                      ),
-                      barrierDismissible: true,
-                      useSafeArea: true,
-                      useRootNavigator: true,
-                    ),
-                    // ignore: unnecessary_null_comparison
+                    onPressed: () => getImg1(),
                     child: Globals.wsPimg1 == null
-                        ? Text("Select Image")
-                        : Text("Image Uploaded!"),
+                        ? Text("Select Image of Packet")
+                        : Text("Image Uploaded! for Packet"),
                   ),
                   Divider(
                     height: 5,
@@ -423,40 +386,10 @@ class _WsPBodyState extends State<WsPBody> {
             height: 10,
           ),
           TextButton(
-            onPressed: () => showDialog(
-              context: context,
-              builder: (builder) => AlertDialog(
-                title: Text("Select Mould Image From"),
-                actions: [
-                  TextButton(
-                    onPressed: () => getImg2(1),
-                    child: Text("Camera"),
-                  ),
-                  TextButton(
-                    onPressed: () => getImg2(2),
-                    child: Text("Gallery"),
-                  ),
-                  Globals.wsPimg2 != null
-                      ? TextButton(
-                          onPressed: () => showDialog(
-                              context: context,
-                              builder: (builder) => AlertDialog(
-                                    title: Text("Image Preview"),
-                                    content: Image.file(File(Globals.wsPimg2)),
-                                  )),
-                          child: Text("Preview"),
-                        )
-                      : Text("Select"),
-                ],
-              ),
-              barrierDismissible: true,
-              useSafeArea: true,
-              useRootNavigator: true,
-            ),
-            // ignore: unnecessary_null_comparison
+            onPressed: () => getImg2(),
             child: Globals.wsPimg2 == null
-                ? Text("Select Image")
-                : Text("Image Uploaded!"),
+                ? Text("Select Mould Image")
+                : Text("Image Uploaded! for Mould"),
           ),
           Divider(
             height: 50,

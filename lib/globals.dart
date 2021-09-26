@@ -94,16 +94,26 @@ class Globals {
   static var dt100;
   static var dt211;
   static var dt212;
+  static var dtwsW1;
+  static var dtwsW2;
   static var dt213;
   static var dt214;
+  static var dtwsG1;
+  static var dtwsG2;
   static var dt215;
+  static var dtwsP1;
+  static var dtwsP2;
   static var dt216;
   static var dt220;
+  static var dtr1;
+  static var dtr2;
   static var dt230;
+  static var dti1;
   static var dt240;
+  static var dtwt1;
   static var dt250;
+  static var dtg1;
   static var dt260;
-  static var dt300;
 
 // Screenshots
   static var ss211;
@@ -258,10 +268,6 @@ class Globals {
   }
 
   static void gotoFin(BuildContext context) {
-    final now = DateTime.now();
-    dt300 =
-        "${now.year.toString()}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')} ${now.hour.toString().padLeft(2, '0')}-${now.minute.toString().padLeft(2, '0')}";
-
     Navigator.pushNamed(context, "/300");
   }
 
