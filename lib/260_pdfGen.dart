@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'globals.dart';
+import 'dart:async';
 
 class PdfGen extends StatefulWidget {
   const PdfGen({Key? key}) : super(key: key);
@@ -12,17 +13,10 @@ class PdfGen extends StatefulWidget {
 
 class _PdfGenState extends State<PdfGen> {
   var pageNum = 260;
+  var _loading = false;
 
   //Create a new PDF document
   PdfDocument document = PdfDocument();
-
-  @override
-  void initState() {
-    setState(() {
-      Globals.load = Globals.load;
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,10 +163,10 @@ class _PdfGenState extends State<PdfGen> {
                     Divider(
                       height: 20,
                     ),
-                    Globals.load
-                        ? LinearProgressIndicator(
+                    _loading
+                        ? CircularProgressIndicator(
                             color: Colors.redAccent,
-                            minHeight: 5,
+                            // minHeight: 5,
                             semanticsLabel: "Pdf Being Generated",
                           )
                         : Divider(
@@ -190,23 +184,26 @@ class _PdfGenState extends State<PdfGen> {
                               padding:
                                   MaterialStateProperty.all(EdgeInsets.all(12)),
                               backgroundColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.pressed))
-                                  return Colors.redAccent;
-                                return Colors.blueAccent;
-                              }),
+                                  MaterialStateProperty.all(Colors.blueAccent),
                               shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)),
                               ))),
-                          onPressed: () {
+                          onPressed: () async {
                             setState(() {
-                              Globals.load = true;
+                              _loading = true;
                             });
-
-                            createPdf();
+                            final snackBar = SnackBar(
+                              content: Text(
+                                  'PDF Creation Started..... Wait Patiently !..'),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                            Future.delayed(
+                              Duration(milliseconds: 250),
+                              () => createPdf(),
+                            );
                           },
                           child: Text(
                             "Create PDF!",
@@ -298,7 +295,7 @@ class _PdfGenState extends State<PdfGen> {
     }
 
 //Saves the document
-    await File('${Globals.appDir}/Sweld-${Globals.dt260}.pdf')
+    File('${Globals.appDir}/Sweld-${Globals.dt260}.pdf')
         .writeAsBytes(document.save());
 
 //Disposes the document

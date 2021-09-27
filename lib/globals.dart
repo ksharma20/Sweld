@@ -70,9 +70,6 @@ class Globals {
 // Page Number Counter
   static int pageNum = 0;
 
-// Loading Screen
-  static bool load = false;
-
 // Image Path for different Pages
   static var wsWimg1;
   static var wsWimg2;
