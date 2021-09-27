@@ -113,7 +113,7 @@ class _WsGmBodyState extends State<WsGmBody> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Gap Measurement",
+                "Gap Measurement and Alignment",
                 textScaleFactor: 2,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -233,7 +233,7 @@ class _WsGmBodyState extends State<WsGmBody> {
                       ),
                     ),
                     hint: Text(
-                        Globals.eckw ?? "Ends Cleaned by koil & wire-brush"),
+                        Globals.eckw ?? "Ends Cleaned by Kerosene oil & wire-brush"),
                     isExpanded: true,
                     items: <String>[
                       'Select Ends Cleaned by..',
