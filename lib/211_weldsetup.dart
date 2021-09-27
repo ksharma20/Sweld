@@ -210,7 +210,7 @@ class _WsLocationState extends State<WsLocation> {
                     TextFormField(
                       initialValue: Globals.distance,
                       decoration: InputDecoration(
-                        labelText: "Distance",
+                        labelText: "Kilometerage",
                         hintText: "In kilometers(km)",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -271,7 +271,7 @@ class _WsLocationState extends State<WsLocation> {
                                   indent: 15,
                                   endIndent: 5,
                                 ),
-                                Text("Start Time \nof Block"),
+                                Text("Block of\n Start Time"),
                                 TextButton(
                                   onPressed: () {
                                     showTimePicker(
@@ -303,7 +303,7 @@ class _WsLocationState extends State<WsLocation> {
                                 Divider(
                                   indent: 10,
                                 ),
-                                Text("End Time \nof Block"),
+                                Text("Block of\n End Time"),
                                 TextButton(
                                   onPressed: () {
                                     showTimePicker(

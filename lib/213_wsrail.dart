@@ -281,12 +281,12 @@ class _WsRailBodyState extends State<WsRailBody> {
                         ),
                       ),
                     ),
-                    hint: Text(Globals.utbw ?? "Used Testing Before Welding"),
+                    hint: Text(Globals.utbw ?? "USFD Testing Before Welding"),
                     isExpanded: true,
                     items: <String>[
-                      'Used Testing',
-                      'Yes Used Testing Before Welding',
-                      'Not Used Testing Before Welding'
+                      'USFD Testing',
+                      'Yes USFD Testing Before Welding',
+                      'Not USFD Testing Before Welding'
                     ].map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -314,12 +314,12 @@ class _WsRailBodyState extends State<WsRailBody> {
                         ),
                       ),
                     ),
-                    hint: Text(Globals.tru ?? "Test Result Used"),
+                    hint: Text(Globals.tru ?? "Test Result USFD"),
                     isExpanded: true,
                     items: <String>[
                       'Test Result',
-                      'Test Result Used OK',
-                      'Test Result Used Not OK'
+                      'Test Result USFD OK',
+                      'Test Result USFD Not OK'
                     ].map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,

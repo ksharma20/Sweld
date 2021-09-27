@@ -312,7 +312,7 @@ class _WsPBodyState extends State<WsPBody> {
                   TextButton(
                     onPressed: () => getImg1(),
                     child: Globals.wsPimg1 == null
-                        ? Text("Select Image of Packet")
+                        ? Text("Image of Portion Slip")
                         : Text("Image Uploaded! for Packet"),
                   ),
                   Divider(
