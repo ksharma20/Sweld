@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'globals.dart';
+import 'dart:async';
 
 class PdfGen extends StatefulWidget {
   const PdfGen({Key? key}) : super(key: key);
@@ -12,23 +13,16 @@ class PdfGen extends StatefulWidget {
 
 class _PdfGenState extends State<PdfGen> {
   var pageNum = 260;
+  var _loading = false;
 
   //Create a new PDF document
   PdfDocument document = PdfDocument();
 
   @override
-  void initState() {
-    setState(() {
-      Globals.load = Globals.load;
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Check, Create and Save Pdf"),
+        title: Text("Create and Save Pdf"),
         actions: [
           IconButton(
               onPressed: () => Globals.gotoHome(context),
@@ -40,6 +34,9 @@ class _PdfGenState extends State<PdfGen> {
               child: Center(
                 child: Column(
                   children: [
+                    Divider(
+                      height: 15,
+                    ),
                     Text(
                       "Check your Uploaded Images \nIf not Clear then Upload again",
                       textScaleFactor: 1.5,
@@ -54,11 +51,19 @@ class _PdfGenState extends State<PdfGen> {
                     Divider(
                       height: 15,
                     ),
+                    Text("Image for validity certificate of Welder"),
+                    Divider(
+                      height: 25,
+                    ),
                     Globals.wsWimg2 != null
                         ? Image.file(File(Globals.wsWimg2))
                         : Text("No Image Uploaded"),
                     Divider(
                       height: 15,
+                    ),
+                    Text("Image for validity certificate of supervisor"),
+                    Divider(
+                      height: 25,
                     ),
                     Globals.wsGimg1 != null
                         ? Image.file(File(Globals.wsGimg1))
@@ -66,11 +71,19 @@ class _PdfGenState extends State<PdfGen> {
                     Divider(
                       height: 15,
                     ),
+                    Text("Image for Lateral alignment"),
+                    Divider(
+                      height: 25,
+                    ),
                     Globals.wsGimg2 != null
                         ? Image.file(File(Globals.wsGimg2))
                         : Text("No Image Uploaded"),
                     Divider(
                       height: 15,
+                    ),
+                    Text("Image for Vertical alignment"),
+                    Divider(
+                      height: 25,
                     ),
                     Globals.wsPimg1 != null
                         ? Image.file(File(Globals.wsPimg1))
@@ -78,11 +91,19 @@ class _PdfGenState extends State<PdfGen> {
                     Divider(
                       height: 15,
                     ),
+                    Text("Image for Packet"),
+                    Divider(
+                      height: 25,
+                    ),
                     Globals.wsPimg2 != null
                         ? Image.file(File(Globals.wsPimg2))
                         : Text("No Image Uploaded"),
                     Divider(
                       height: 15,
+                    ),
+                    Text("Image for Mould"),
+                    Divider(
+                      height: 25,
                     ),
                     Globals.rimg1 != null
                         ? Image.file(File(Globals.rimg1))
@@ -90,11 +111,19 @@ class _PdfGenState extends State<PdfGen> {
                     Divider(
                       height: 15,
                     ),
+                    Text("Image During Preheat"),
+                    Divider(
+                      height: 25,
+                    ),
                     Globals.rimg2 != null
                         ? Image.file(File(Globals.rimg2))
                         : Text("No Image Uploaded"),
                     Divider(
                       height: 15,
+                    ),
+                    Text("Image After Preheat is completed"),
+                    Divider(
+                      height: 25,
                     ),
                     Globals.iimg1 != null
                         ? Image.file(File(Globals.iimg1))
@@ -102,15 +131,27 @@ class _PdfGenState extends State<PdfGen> {
                     Divider(
                       height: 15,
                     ),
+                    Text("Image After Time is Complete"),
+                    Divider(
+                      height: 25,
+                    ),
                     Globals.wTimg1 != null
                         ? Image.file(File(Globals.wTimg1))
                         : Text("No Image Uploaded"),
                     Divider(
                       height: 15,
                     ),
+                    Text("Image After Time is Complete"),
+                    Divider(
+                      height: 25,
+                    ),
                     Globals.gimg1 != null
                         ? Image.file(File(Globals.gimg1))
                         : Text("No Image Uploaded"),
+                    Divider(
+                      height: 15,
+                    ),
+                    Text("Image for Above Values"),
                     Divider(
                       height: 50,
                     ),
@@ -120,12 +161,12 @@ class _PdfGenState extends State<PdfGen> {
                       textScaleFactor: 1.3,
                     )),
                     Divider(
-                      height: 15,
+                      height: 20,
                     ),
-                    Globals.load
-                        ? LinearProgressIndicator(
+                    _loading
+                        ? CircularProgressIndicator(
                             color: Colors.redAccent,
-                            minHeight: 5,
+                            // minHeight: 5,
                             semanticsLabel: "Pdf Being Generated",
                           )
                         : Divider(
@@ -143,18 +184,27 @@ class _PdfGenState extends State<PdfGen> {
                               padding:
                                   MaterialStateProperty.all(EdgeInsets.all(12)),
                               backgroundColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.pressed))
-                                  return Colors.redAccent;
-                                return Colors.blueAccent;
-                              }),
+                                  MaterialStateProperty.all(Colors.blueAccent),
                               shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)),
                               ))),
-                          onPressed: () => createPdf(),
+                          onPressed: () async {
+                            setState(() {
+                              _loading = true;
+                            });
+                            final snackBar = SnackBar(
+                              content: Text(
+                                  'PDF Creation Started..... Wait Patiently !..'),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                            Future.delayed(
+                              Duration(milliseconds: 250),
+                              () => createPdf(),
+                            );
+                          },
                           child: Text(
                             "Create PDF!",
                             textScaleFactor: 1.3,
@@ -164,6 +214,9 @@ class _PdfGenState extends State<PdfGen> {
                           ),
                         ),
                       ),
+                    ),
+                    Divider(
+                      height: 50,
                     ),
                   ],
                 ),
@@ -193,6 +246,8 @@ class _PdfGenState extends State<PdfGen> {
 
   createPdf() async {
     //Add Pages
+    addTable();
+
     addPage(Globals.ss211);
     addPage(Globals.ss212);
 
@@ -238,10 +293,9 @@ class _PdfGenState extends State<PdfGen> {
     if (Globals.gimg1 != null) {
       addPage(Globals.gimg1);
     }
-    addTable();
 
 //Saves the document
-    await File('${Globals.appDir}/Sweld-${Globals.dt260}.pdf')
+    File('${Globals.appDir}/Sweld-${Globals.dt260}.pdf')
         .writeAsBytes(document.save());
 
 //Disposes the document
@@ -253,16 +307,32 @@ class _PdfGenState extends State<PdfGen> {
     });
   }
 
-  addPage(imgPath) async {
-//Adds a page to the document
-    PdfPage page = document.pages.add();
+  addPage(imgPath) {
+    //Create PDF section.
+    PdfSection section = document.sections!.add();
+    //Load the image.
+    final PdfImage image = PdfBitmap(File(imgPath).readAsBytesSync());
 
-//Draw the image
+    //set section orientation according to image size width
+    if (image.height >= image.width) {
+      section.pageSettings.orientation = PdfPageOrientation.portrait;
+    } else if (image.height < image.width) {
+      section.pageSettings.orientation = PdfPageOrientation.landscape;
+    }
+    //setting section size
+    section.pageSettings.size =
+        Size(image.width.toDouble(), image.height.toDouble());
+
+    //removing any margin from document
+    section.pageSettings.margins.all = 0;
+
+    //Add the page
+    PdfPage page = section.pages.add();
+    //Load the image.
+
+    //draw image to the first page
     page.graphics.drawImage(
-      PdfBitmap(File(imgPath).readAsBytesSync()),
-      Rect.fromLTWH(
-          0, 0, page.getClientSize().width, page.getClientSize().height),
-    );
+        image, Rect.fromLTWH(0, 0, page.size.width, page.size.height));
   }
 
   addTable() {
@@ -282,61 +352,116 @@ class _PdfGenState extends State<PdfGen> {
 
 //Add rows to grid
     PdfGridRow row = grid.rows.add();
-    row.cells[0].value = '211_Location';
+    row.cells[0].value = 'Location';
     row.cells[1].value = Globals.dt211;
     row.cells[2].value = Globals.dt212;
 
     row = grid.rows.add();
-    row.cells[0].value = '212_Welder\nName';
+    row.cells[0].value = 'Welder\nName';
     row.cells[1].value = Globals.dt212;
     row.cells[2].value = Globals.dt213;
 
     row = grid.rows.add();
-    row.cells[0].value = '213_Rails\nSection';
+    row.cells[0].value = 'Validity Certificate\nWelder';
+    row.cells[1].value = Globals.dtwsW1 ?? "No Image";
+    row.cells[2].value = Globals.dtwsW1 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Validity Certificate\nSupervisor';
+    row.cells[1].value = Globals.dtwsW2 ?? "No Image";
+    row.cells[2].value = Globals.dtwsW2 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Rails\nSection';
     row.cells[1].value = Globals.dt213;
     row.cells[2].value = Globals.dt214;
 
     row = grid.rows.add();
-    row.cells[0].value = '214_Gap\nMeasurment';
+    row.cells[0].value = 'Gap\nMeasurment';
     row.cells[1].value = Globals.dt214;
     row.cells[2].value = Globals.dt215;
 
     row = grid.rows.add();
-    row.cells[0].value = '215_Portion\nDetails';
+    row.cells[0].value = 'Lateral\nAlignment';
+    row.cells[1].value = Globals.dtwsG1 ?? "No Image";
+    row.cells[2].value = Globals.dtwsG1 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Vertical\nAlignment';
+    row.cells[1].value = Globals.dtwsG2 ?? "No Image";
+    row.cells[2].value = Globals.dtwsG2 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Portion\nDetails';
     row.cells[1].value = Globals.dt215;
     row.cells[2].value = Globals.dt216;
 
     row = grid.rows.add();
-    row.cells[0].value = '216_PreHeat';
+    row.cells[0].value = 'Packetn\nImage';
+    row.cells[1].value = Globals.dtwsP1 ?? "No Image";
+    row.cells[2].value = Globals.dtwsP1 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Mouldn\nImage';
+    row.cells[1].value = Globals.dtwsP2 ?? "No Image";
+    row.cells[2].value = Globals.dtwsP2 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'PreHeat';
     row.cells[1].value = Globals.dt216;
     row.cells[2].value = Globals.dt220;
 
     row = grid.rows.add();
-    row.cells[0].value = '220_Rail\nPreHeat';
+    row.cells[0].value = 'Rail\nPreHeat';
     row.cells[1].value = Globals.dt220;
     row.cells[2].value = Globals.dt230;
 
     row = grid.rows.add();
-    row.cells[0].value = '230_Ignition\nTime';
+    row.cells[0].value = 'During\nPreHeat';
+    row.cells[1].value = Globals.dtr1 ?? "No Image";
+    row.cells[2].value = Globals.dtr1 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'After\nPreHeat';
+    row.cells[1].value = Globals.dtr2 ?? "No Image";
+    row.cells[2].value = Globals.dtr2 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Ignition\nTime';
     row.cells[1].value = Globals.dt230;
     row.cells[2].value = Globals.dt240;
 
     row = grid.rows.add();
-    row.cells[0].value = '240_Weld\nTrimming';
+    row.cells[0].value = 'After Time\nCompleted';
+    row.cells[1].value = Globals.dti1 ?? "No Image";
+    row.cells[2].value = Globals.dti1 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Weld\nTrimming';
     row.cells[1].value = Globals.dt240;
     row.cells[2].value = Globals.dt250;
 
     row = grid.rows.add();
-    row.cells[0].value = '250_Grinding';
+    row.cells[0].value = 'After Time\nCompleted';
+    row.cells[1].value = Globals.dtwt1 ?? "No Image";
+    row.cells[2].value = Globals.dtwt1 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Grinding';
     row.cells[1].value = Globals.dt250;
     row.cells[2].value = Globals.dt260;
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Values Image';
+    row.cells[1].value = Globals.dtg1 ?? "No Image";
+    row.cells[2].value = Globals.dtg1 ?? "No Image";
 
 //Set the grid style
     grid.style = PdfGridStyle(
         cellPadding: PdfPaddings(left: 2, right: 3, top: 4, bottom: 5),
-        backgroundBrush: PdfBrushes.antiqueWhite,
+        backgroundBrush: PdfBrushes.white,
         textBrush: PdfBrushes.black,
-        font: PdfStandardFont(PdfFontFamily.timesRoman, 25));
+        font: PdfStandardFont(PdfFontFamily.helvetica, 20));
 
 //Draw the grid
     grid.draw(

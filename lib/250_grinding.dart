@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
@@ -49,21 +48,7 @@ class _GrindingState extends State<Grinding> {
 
               Globals.saveImg(Globals.gimg1, "gimg1.jpg");
 
-              final snackBar = SnackBar(
-                content: Text(
-                    'PDF Creation Takes Some time, So wait Paitently After Clicking Create PDF'),
-                action: SnackBarAction(
-                  label: 'UnderStood',
-                  onPressed: () {
-                    setState(() {
-                      Globals.load = true;
-                    });
-                  },
-                ),
-              );
               Globals.gotopgf(context);
-
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             child: Text("Finish Weld"),
           ),
@@ -88,23 +73,15 @@ class GrindingBody extends StatefulWidget {
 }
 
 class _GrindingBodyState extends State<GrindingBody> {
-  Future getImg1(int op) async {
-    if (op == 1) {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image != null) {
-        setState(() {
-          Globals.gimg1 = image.path;
-        });
-      }
-    } else {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        setState(() {
-          Globals.gimg1 = image.path;
-        });
-      }
+  Future getImg1() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.gimg1 = image.path;
+      });
     }
-    Navigator.pop(context);
+    Globals.dtg1 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
   @override
@@ -289,36 +266,7 @@ class _GrindingBodyState extends State<GrindingBody> {
             height: 10,
           ),
           TextButton(
-            onPressed: () => showDialog(
-              context: context,
-              builder: (builder) => AlertDialog(
-                title: Text("Select Image From"),
-                actions: [
-                  TextButton(
-                    onPressed: () => getImg1(1),
-                    child: Text("Camera"),
-                  ),
-                  TextButton(
-                    onPressed: () => getImg1(2),
-                    child: Text("Gallery"),
-                  ),
-                  Globals.gimg1 != null
-                      ? TextButton(
-                          onPressed: () => showDialog(
-                              context: context,
-                              builder: (builder) => AlertDialog(
-                                    title: Text("Image Preview"),
-                                    content: Image.file(File(Globals.gimg1)),
-                                  )),
-                          child: Text("Preview"),
-                        )
-                      : Text("Select"),
-                ],
-              ),
-              barrierDismissible: true,
-              useSafeArea: true,
-              useRootNavigator: true,
-            ),
+            onPressed: () => getImg1(),
             child: Globals.gimg1 == null
                 ? Text("Select Image of Above Values")
                 : Text("Image Uploaded!"),

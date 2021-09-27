@@ -70,7 +70,7 @@ class _WsLocationState extends State<WsLocation> {
 
   Widget selectTime(time) {
     if (time == TimeOfDay(hour: 00, minute: 00)) {
-      return Text("Select Time");
+      return Text("Select");
     } else {
       if (time == sTime) {
         return Text("${Globals.stime}");
@@ -261,6 +261,9 @@ class _WsLocationState extends State<WsLocation> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          Divider(
+                            indent: 15,
+                          ),
                           Flexible(
                             child: Row(
                               children: [
@@ -268,7 +271,7 @@ class _WsLocationState extends State<WsLocation> {
                                   indent: 15,
                                   endIndent: 5,
                                 ),
-                                Text("Start Time "),
+                                Text("Start Time \nof Block"),
                                 TextButton(
                                   onPressed: () {
                                     showTimePicker(
@@ -300,7 +303,7 @@ class _WsLocationState extends State<WsLocation> {
                                 Divider(
                                   indent: 10,
                                 ),
-                                Text("End Time "),
+                                Text("End Time \nof Block"),
                                 TextButton(
                                   onPressed: () {
                                     showTimePicker(

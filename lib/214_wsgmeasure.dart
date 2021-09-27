@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
@@ -81,44 +80,26 @@ class WsGmBody extends StatefulWidget {
 }
 
 class _WsGmBodyState extends State<WsGmBody> {
-  Future getImg1(int op) async {
-    if (op == 1) {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image != null) {
-        setState(() {
-          Globals.wsGimg1 = image.path;
-        });
-      }
-    } else {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        setState(() {
-          Globals.wsGimg1 = image.path;
-        });
-      }
+  Future getImg1() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.wsGimg1 = image.path;
+      });
     }
-
-    Navigator.pop(context);
+    Globals.dtwsG1 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
-  Future getImg2(int op) async {
-    if (op == 1) {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image != null) {
-        setState(() {
-          Globals.wsGimg2 = image.path;
-        });
-      }
-    } else {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        setState(() {
-          Globals.wsGimg2 = image.path;
-        });
-      }
+  Future getImg2() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.wsGimg2 = image.path;
+      });
     }
-
-    Navigator.pop(context);
+    Globals.dtwsG2 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
   @override
@@ -352,41 +333,10 @@ class _WsGmBodyState extends State<WsGmBody> {
                     height: 5,
                   ),
                   TextButton(
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (builder) => AlertDialog(
-                        title: Text("Select Lateral Alignment Image From"),
-                        actions: [
-                          TextButton(
-                            onPressed: () => getImg1(1),
-                            child: Text("Camera"),
-                          ),
-                          TextButton(
-                            onPressed: () => getImg1(2),
-                            child: Text("Gallery"),
-                          ),
-                          Globals.wsGimg1 != null
-                              ? TextButton(
-                                  onPressed: () => showDialog(
-                                      context: context,
-                                      builder: (builder) => AlertDialog(
-                                            title: Text("Image Preview"),
-                                            content: Image.file(
-                                                File(Globals.wsGimg1)),
-                                          )),
-                                  child: Text("Preview"),
-                                )
-                              : Text("Select"),
-                        ],
-                      ),
-                      barrierDismissible: true,
-                      useSafeArea: true,
-                      useRootNavigator: true,
-                    ),
-                    // ignore: unnecessary_null_comparison
+                    onPressed: () => getImg1(),
                     child: Globals.wsGimg1 == null
-                        ? Text("Select Image")
-                        : Text("Image Uploaded!"),
+                        ? Text("Select Image of Lateral Alignment")
+                        : Text("Image Uploaded! for Lateral Alignment"),
                   ),
                   Divider(
                     height: 5,
@@ -412,41 +362,10 @@ class _WsGmBodyState extends State<WsGmBody> {
                     height: 5,
                   ),
                   TextButton(
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (builder) => AlertDialog(
-                        title: Text("Select Vertical Alignment Image From"),
-                        actions: [
-                          TextButton(
-                            onPressed: () => getImg2(1),
-                            child: Text("Camera"),
-                          ),
-                          TextButton(
-                            onPressed: () => getImg2(2),
-                            child: Text("Gallery"),
-                          ),
-                          Globals.wsGimg2 != null
-                              ? TextButton(
-                                  onPressed: () => showDialog(
-                                      context: context,
-                                      builder: (builder) => AlertDialog(
-                                            title: Text("Image Preview"),
-                                            content: Image.file(
-                                                File(Globals.wsGimg2)),
-                                          )),
-                                  child: Text("Preview"),
-                                )
-                              : Text("Select"),
-                        ],
-                      ),
-                      barrierDismissible: true,
-                      useSafeArea: true,
-                      useRootNavigator: true,
-                    ),
-                    // ignore: unnecessary_null_comparison
+                    onPressed: () => getImg2(),
                     child: Globals.wsGimg2 == null
-                        ? Text("Select Image")
-                        : Text("Image Uploaded!"),
+                        ? Text("Select Image of Vertical Alignment")
+                        : Text("Image Uploaded! for Vertical Alignment"),
                   ),
                   Divider(
                     height: 5,

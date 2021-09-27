@@ -78,23 +78,15 @@ class _IgnitionTimeState extends State<IgnitionTime> {
     setState(() => timer?.cancel());
   }
 
-  Future getImg1(int op) async {
-    if (op == 1) {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
-      if (image != null) {
-        setState(() {
-          Globals.iimg1 = image.path;
-        });
-      }
-    } else {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        setState(() {
-          Globals.iimg1 = image.path;
-        });
-      }
+  Future getImg1() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.iimg1 = image.path;
+      });
     }
-    Navigator.pop(context);
+    Globals.dti1 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
   @override
@@ -131,25 +123,7 @@ class _IgnitionTimeState extends State<IgnitionTime> {
                 height: 25,
               ),
               TextButton(
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (builder) => AlertDialog(
-                    title: Text("Select Image From"),
-                    actions: [
-                      TextButton(
-                        onPressed: () => getImg1(1),
-                        child: Text("Camera"),
-                      ),
-                      TextButton(
-                        onPressed: () => getImg1(2),
-                        child: Text("Gallery"),
-                      ),
-                    ],
-                  ),
-                  barrierDismissible: true,
-                  useSafeArea: true,
-                  useRootNavigator: true,
-                ),
+                onPressed: () => getImg1(),
                 child: Globals.iimg1 == null
                     ? Text("Image After Time is Complete")
                     : Image.file(File(Globals.iimg1!)),
