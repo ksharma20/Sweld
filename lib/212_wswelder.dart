@@ -283,9 +283,9 @@ class _WsWelderBodyState extends State<WsWelderBody> {
                   TextButton(
                     onPressed: () => getImg1(),
                     child: Globals.wsWimg1 == null
-                        ? Text("Select Image of Validity certificate of Welder")
+                        ? Text("Click the Picture of the Certificate - Welder")
                         : Text(
-                            "Image Uploaded for Validity certificate of Welder!"),
+                            "Image Uploaded! for Validity certificate of Welder!"),
                   ),
                   Divider(
                     thickness: 0,
@@ -352,7 +352,7 @@ class _WsWelderBodyState extends State<WsWelderBody> {
                     onPressed: () => getImg2(),
                     child: Globals.wsWimg2 == null
                         ? Text(
-                            "Select Image of Validity Certificate of supervisor")
+                            "Click the Picture of the Certificate - Supervisor")
                         : Text(
                             "Image Uploaded! for Validity certificate of supervisor"),
                   ),

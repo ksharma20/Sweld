@@ -35,126 +35,126 @@ class _PdfGenState extends State<PdfGen> {
                 child: Column(
                   children: [
                     Divider(
-                      height: 15,
-                    ),
-                    Text(
-                      "Check your Uploaded Images \nIf not Clear then Upload again",
-                      textScaleFactor: 1.5,
-                      style: TextStyle(fontWeight: FontWeight.w700),
-                    ),
-                    Divider(
                       height: 50,
                     ),
-                    Globals.wsWimg1 != null
-                        ? Image.file(File(Globals.wsWimg1))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image for validity certificate of Welder"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.wsWimg2 != null
-                        ? Image.file(File(Globals.wsWimg2))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image for validity certificate of supervisor"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.wsGimg1 != null
-                        ? Image.file(File(Globals.wsGimg1))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image for Lateral alignment"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.wsGimg2 != null
-                        ? Image.file(File(Globals.wsGimg2))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image for Vertical alignment"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.wsPimg1 != null
-                        ? Image.file(File(Globals.wsPimg1))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image for Packet"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.wsPimg2 != null
-                        ? Image.file(File(Globals.wsPimg2))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image for Mould"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.rimg1 != null
-                        ? Image.file(File(Globals.rimg1))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image During Preheat"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.rimg2 != null
-                        ? Image.file(File(Globals.rimg2))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image After Preheat is completed"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.iimg1 != null
-                        ? Image.file(File(Globals.iimg1))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image After Time is Complete"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.wTimg1 != null
-                        ? Image.file(File(Globals.wTimg1))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image After Time is Complete"),
-                    Divider(
-                      height: 25,
-                    ),
-                    Globals.gimg1 != null
-                        ? Image.file(File(Globals.gimg1))
-                        : Text("No Image Uploaded"),
-                    Divider(
-                      height: 15,
-                    ),
-                    Text("Image for Above Values"),
-                    Divider(
-                      height: 50,
-                    ),
+                    // Text(
+                    //   "Check your Uploaded Images \nIf not Clear then Upload again",
+                    //   textScaleFactor: 1.5,
+                    //   style: TextStyle(fontWeight: FontWeight.w700),
+                    // ),
+                    // Divider(
+                    //   height: 50,
+                    // ),
+                    // Globals.wsWimg1 != null
+                    //     ? Image.file(File(Globals.wsWimg1))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image for validity certificate of Welder"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.wsWimg2 != null
+                    //     ? Image.file(File(Globals.wsWimg2))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image for validity certificate of supervisor"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.wsGimg1 != null
+                    //     ? Image.file(File(Globals.wsGimg1))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image for Lateral alignment"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.wsGimg2 != null
+                    //     ? Image.file(File(Globals.wsGimg2))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image for Vertical alignment"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.wsPimg1 != null
+                    //     ? Image.file(File(Globals.wsPimg1))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image for Packet"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.wsPimg2 != null
+                    //     ? Image.file(File(Globals.wsPimg2))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image for Mould"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.rimg1 != null
+                    //     ? Image.file(File(Globals.rimg1))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image During Preheat"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.rimg2 != null
+                    //     ? Image.file(File(Globals.rimg2))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image After Preheat is completed"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.iimg1 != null
+                    //     ? Image.file(File(Globals.iimg1))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image After Time is Complete"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.wTimg1 != null
+                    //     ? Image.file(File(Globals.wTimg1))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image After Time is Complete"),
+                    // Divider(
+                    //   height: 25,
+                    // ),
+                    // Globals.gimg1 != null
+                    //     ? Image.file(File(Globals.gimg1))
+                    //     : Text("No Image Uploaded"),
+                    // Divider(
+                    //   height: 15,
+                    // ),
+                    // Text("Image for Above Values"),
+                    // Divider(
+                    //   height: 50,
+                    // ),
                     Center(
                         child: Text(
                       "PDF Creation Requires Few Seconds\n Therefore Wait Paitently ...!!...😊",
@@ -346,7 +346,7 @@ class _PdfGenState extends State<PdfGen> {
 
 //Add the rows to the grid
     PdfGridRow header = grid.headers[0];
-    header.cells[0].value = 'Page Id_Name';
+    header.cells[0].value = 'Page Name';
     header.cells[1].value = 'Started On';
     header.cells[2].value = 'Submitted On';
 
@@ -397,14 +397,19 @@ class _PdfGenState extends State<PdfGen> {
     row.cells[2].value = Globals.dt216;
 
     row = grid.rows.add();
-    row.cells[0].value = 'Packetn\nImage';
+    row.cells[0].value = 'Packet\nImage';
     row.cells[1].value = Globals.dtwsP1 ?? "No Image";
     row.cells[2].value = Globals.dtwsP1 ?? "No Image";
 
     row = grid.rows.add();
-    row.cells[0].value = 'Mouldn\nImage';
+    row.cells[0].value = 'Mould\nLeft';
     row.cells[1].value = Globals.dtwsP2 ?? "No Image";
     row.cells[2].value = Globals.dtwsP2 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Mould\nRight';
+    row.cells[1].value = Globals.dtwsP3 ?? "No Image";
+    row.cells[2].value = Globals.dtwsP3 ?? "No Image";
 
     row = grid.rows.add();
     row.cells[0].value = 'PreHeat';
@@ -432,9 +437,14 @@ class _PdfGenState extends State<PdfGen> {
     row.cells[2].value = Globals.dt240;
 
     row = grid.rows.add();
-    row.cells[0].value = 'After Time\nCompleted';
+    row.cells[0].value = 'Left Rail\nImage';
     row.cells[1].value = Globals.dti1 ?? "No Image";
     row.cells[2].value = Globals.dti1 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Right Rail\nImage';
+    row.cells[1].value = Globals.dti2 ?? "No Image";
+    row.cells[2].value = Globals.dti2 ?? "No Image";
 
     row = grid.rows.add();
     row.cells[0].value = 'Weld\nTrimming';
@@ -442,9 +452,14 @@ class _PdfGenState extends State<PdfGen> {
     row.cells[2].value = Globals.dt250;
 
     row = grid.rows.add();
-    row.cells[0].value = 'After Time\nCompleted';
+    row.cells[0].value = 'Left Rail\nImage';
     row.cells[1].value = Globals.dtwt1 ?? "No Image";
     row.cells[2].value = Globals.dtwt1 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Right Rail\nImage';
+    row.cells[1].value = Globals.dtwt2 ?? "No Image";
+    row.cells[2].value = Globals.dtwt2 ?? "No Image";
 
     row = grid.rows.add();
     row.cells[0].value = 'Grinding';
@@ -452,9 +467,24 @@ class _PdfGenState extends State<PdfGen> {
     row.cells[2].value = Globals.dt260;
 
     row = grid.rows.add();
-    row.cells[0].value = 'Values Image';
+    row.cells[0].value = 'Vertical\nAlignment';
     row.cells[1].value = Globals.dtg1 ?? "No Image";
     row.cells[2].value = Globals.dtg1 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Lateral\nAlignment';
+    row.cells[1].value = Globals.dtg2 ?? "No Image";
+    row.cells[2].value = Globals.dtg2 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Top Surface\nAt End';
+    row.cells[1].value = Globals.dtg3 ?? "No Image";
+    row.cells[2].value = Globals.dtg3 ?? "No Image";
+
+    row = grid.rows.add();
+    row.cells[0].value = 'Top Surface\nAt Center';
+    row.cells[1].value = Globals.dtg4 ?? "No Image";
+    row.cells[2].value = Globals.dtg4 ?? "No Image";
 
 //Set the grid style
     grid.style = PdfGridStyle(

@@ -37,7 +37,8 @@ class RailPreHeat extends StatefulWidget {
 class _RailPreHeatState extends State<RailPreHeat> {
   final pageNum = 220;
 
-  static var countdownDuration = Duration(minutes: Globals.pretime);
+  var countdownDuration =
+      Duration(minutes: Globals.pretimeMin, seconds: Globals.pretimeSec);
   Duration duration = Duration();
   Timer? timer;
 
@@ -104,6 +105,10 @@ class _RailPreHeatState extends State<RailPreHeat> {
 
   @override
   void initState() {
+    setState(() {
+      Globals.pretimeMin = Globals.pretimeMin;
+      Globals.pretimeSec = Globals.pretimeSec;
+    });
     super.initState();
     reset();
   }
@@ -134,7 +139,7 @@ class _RailPreHeatState extends State<RailPreHeat> {
               TextButton(
                 onPressed: () => getImg1(),
                 child: Globals.rimg1 == null
-                    ? Text("Image During Preheat")
+                    ? Text("Click Picture of Pressure Gauge")
                     : Image.file(File(Globals.rimg1!)),
               ),
               Divider(

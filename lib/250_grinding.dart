@@ -84,6 +84,39 @@ class _GrindingBodyState extends State<GrindingBody> {
         "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
+  Future getImg2() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.gimg2 = image.path;
+      });
+    }
+    Globals.dtg2 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
+  }
+
+  Future getImg3() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.gimg3 = image.path;
+      });
+    }
+    Globals.dtg3 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
+  }
+
+  Future getImg4() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.gimg4 = image.path;
+      });
+    }
+    Globals.dtg4 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -172,7 +205,7 @@ class _GrindingBodyState extends State<GrindingBody> {
           TextFormField(
             initialValue: Globals.gva,
             decoration: InputDecoration(
-              labelText: "Vertical Allignment",
+              labelText: "Vertical Alignment",
               hintText: "with 1m st.edge",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
@@ -189,6 +222,14 @@ class _GrindingBodyState extends State<GrindingBody> {
               });
             },
           ),
+          TextButton(
+            onPressed: () => getImg1(),
+            child: Globals.gimg1 == null
+                ? Text(
+                    "Picture of Reading of Vertical Alignment",
+                  )
+                : Text("Image Uploaded! for reading "),
+          ),
           Divider(
             thickness: 0,
             height: 10,
@@ -196,7 +237,7 @@ class _GrindingBodyState extends State<GrindingBody> {
           TextFormField(
             initialValue: Globals.gla,
             decoration: InputDecoration(
-              labelText: "Lateral Allignment",
+              labelText: "Lateral Alignment",
               hintText: "with 1m st.edge",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
@@ -212,6 +253,14 @@ class _GrindingBodyState extends State<GrindingBody> {
                 Globals.gla = val;
               });
             },
+          ),
+          TextButton(
+            onPressed: () => getImg2(),
+            child: Globals.gimg2 == null
+                ? Text(
+                    "Picture of Reading of Lateral Alignment",
+                  )
+                : Text("Image Uploaded! for reading "),
           ),
           Divider(
             thickness: 0,
@@ -236,6 +285,15 @@ class _GrindingBodyState extends State<GrindingBody> {
                 Globals.gfts = val;
               });
             },
+          ),
+          TextButton(
+            onPressed: () => getImg3(),
+            child: Globals.gimg3 == null
+                ? Text(
+                    "Picture of Reading of Finishing of Top Surface at the End",
+                    textScaleFactor: 0.9,
+                  )
+                : Text("Image Uploaded! for reading "),
           ),
           Divider(
             thickness: 0,
@@ -266,10 +324,13 @@ class _GrindingBodyState extends State<GrindingBody> {
             height: 10,
           ),
           TextButton(
-            onPressed: () => getImg1(),
-            child: Globals.gimg1 == null
-                ? Text("Select Image of Above Values")
-                : Text("Image Uploaded!"),
+            onPressed: () => getImg4(),
+            child: Globals.gimg4 == null
+                ? Text(
+                    "Picture of Reading of Finishing of Top Surface at the center",
+                    textScaleFactor: 0.9,
+                  )
+                : Text("Image Uploaded! for reading "),
           ),
           Divider(
             height: 50,

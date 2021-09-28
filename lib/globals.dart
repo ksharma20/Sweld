@@ -15,7 +15,6 @@ class Globals {
   static var etime;
   static var welder;
   static var deptcont;
-  static var dept;
   static var agency;
   static var avc;
   static var supervisor;
@@ -39,7 +38,6 @@ class Globals {
   static var fbe;
   static var lateral;
   static var vertical;
-  static var fasr;
   static var pms;
   static var datepor;
   static var porno;
@@ -49,10 +47,13 @@ class Globals {
   static var mould;
   static var msfc;
   static var pretec;
-  static var pretime = 5;
+  static var pretimeMin = 00;
+  static var pretimeSec = 00;
   static var airpre;
   static var oxygenpre;
   static var lpgpre;
+  static var gow = 0;
+  static var sgow;
   static var grinding;
   static var ftpa;
   static var ftpasr;
@@ -77,11 +78,17 @@ class Globals {
   static var wsGimg2;
   static var wsPimg1;
   static var wsPimg2;
+  static var wsPimg3;
   static var rimg1;
   static var rimg2;
   static var iimg1;
+  static var iimg2;
   static var wTimg1;
+  static var wTimg2;
   static var gimg1;
+  static var gimg2;
+  static var gimg3;
+  static var gimg4;
 
 // Pdf File
   static var pdfName;
@@ -100,16 +107,22 @@ class Globals {
   static var dt215;
   static var dtwsP1;
   static var dtwsP2;
+  static var dtwsP3;
   static var dt216;
   static var dt220;
   static var dtr1;
   static var dtr2;
   static var dt230;
   static var dti1;
+  static var dti2;
   static var dt240;
   static var dtwt1;
+  static var dtwt2;
   static var dt250;
   static var dtg1;
+  static var dtg2;
+  static var dtg3;
+  static var dtg4;
   static var dt260;
 
 // Screenshots

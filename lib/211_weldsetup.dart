@@ -262,7 +262,7 @@ class _WsLocationState extends State<WsLocation> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Divider(
-                            indent: 15,
+                            indent: 5,
                           ),
                           Flexible(
                             child: Row(
@@ -271,7 +271,7 @@ class _WsLocationState extends State<WsLocation> {
                                   indent: 15,
                                   endIndent: 5,
                                 ),
-                                Text("Block of\n Start Time"),
+                                Text("Block of\nStart Time"),
                                 TextButton(
                                   onPressed: () {
                                     showTimePicker(
@@ -301,9 +301,9 @@ class _WsLocationState extends State<WsLocation> {
                             child: Row(
                               children: [
                                 Divider(
-                                  indent: 10,
+                                  indent: 30,
                                 ),
-                                Text("Block of\n End Time"),
+                                Text("Block of\nEnd Time"),
                                 TextButton(
                                   onPressed: () {
                                     showTimePicker(

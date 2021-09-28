@@ -360,6 +360,7 @@ class _WsRailBodyState extends State<WsRailBody> {
                               initialValue: Globals.vwleft,
                               decoration: InputDecoration(
                                 labelText: "Left",
+                                hintText: "In mm",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5),
                                   borderSide: BorderSide(
@@ -385,6 +386,7 @@ class _WsRailBodyState extends State<WsRailBody> {
                               initialValue: Globals.vwright,
                               decoration: InputDecoration(
                                 labelText: "Right",
+                                hintText: "In mm",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5),
                                   borderSide: BorderSide(
@@ -432,6 +434,7 @@ class _WsRailBodyState extends State<WsRailBody> {
                               initialValue: Globals.lwleft,
                               decoration: InputDecoration(
                                 labelText: "Left",
+                                hintText: "In mm",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5),
                                   borderSide: BorderSide(
@@ -457,6 +460,7 @@ class _WsRailBodyState extends State<WsRailBody> {
                               initialValue: Globals.lwright,
                               decoration: InputDecoration(
                                 labelText: "Right",
+                                hintText: "In mm",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5),
                                   borderSide: BorderSide(

@@ -37,7 +37,7 @@ class IgnitionTime extends StatefulWidget {
 class _IgnitionTimeState extends State<IgnitionTime> {
   final pageNum = 230;
 
-  static var countdownDuration = Duration(minutes: 20);
+  var countdownDuration = Duration(minutes: Globals.gow);
   Duration duration = Duration();
   Timer? timer;
 
@@ -89,6 +89,17 @@ class _IgnitionTimeState extends State<IgnitionTime> {
         "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
+  Future getImg2() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.iimg2 = image.path;
+      });
+    }
+    Globals.dti2 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
+  }
+
   @override
   void initState() {
     super.initState();
@@ -100,12 +111,58 @@ class _IgnitionTimeState extends State<IgnitionTime> {
         backgroundColor: Colors.orange[50],
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text("Ignition & Mould Wait"),
+          title: Text("Ignition & Mould Waiting Time"),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
+              Divider(
+                height: 20,
+              ),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                      style: BorderStyle.solid,
+                      width: 1.5,
+                    ),
+                  ),
+                ),
+                hint: Text(Globals.sgow ?? "Select Gap of Welding"),
+                isExpanded: true,
+                items: <String>[
+                  'Select Gap of Welding',
+                  '25 mm Gap',
+                  '75 mm Gap',
+                ].map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (val) {
+                  Globals.sgow = val;
+                  if (val == '25 mm Gap') {
+                    setState(() {
+                      Globals.gow = 6;
+                    });
+                  } else if (val == '75 mm Gap') {
+                    setState(() {
+                      Globals.gow = 12;
+                    });
+                  } else {
+                    Globals.gow = 0;
+                  }
+                  Navigator.pushReplacementNamed(context, "/230");
+                },
+              ),
+              Divider(
+                height: 20,
+              ),
+              Text("Ignition Time = 20min ± 3sec"),
               Divider(
                 height: 50,
               ),
@@ -120,13 +177,31 @@ class _IgnitionTimeState extends State<IgnitionTime> {
                 ],
               ),
               Divider(
+                height: 35,
+              ),
+              Center(
+                child: Text(
+                  "Click the Picture of Rails When Moulds \nJust About to be Removed !",
+                  textScaleFactor: 1.2,
+                ),
+              ),
+              Divider(
                 height: 25,
               ),
               TextButton(
                 onPressed: () => getImg1(),
                 child: Globals.iimg1 == null
-                    ? Text("Image After Time is Complete")
+                    ? Text("Left Rail")
                     : Image.file(File(Globals.iimg1!)),
+              ),
+              Divider(
+                height: 25,
+              ),
+              TextButton(
+                onPressed: () => getImg2(),
+                child: Globals.iimg2 == null
+                    ? Text("Right Rail")
+                    : Image.file(File(Globals.iimg2!)),
               ),
               Divider(
                 height: 50,

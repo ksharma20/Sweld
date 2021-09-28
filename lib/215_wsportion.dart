@@ -103,6 +103,17 @@ class _WsPBodyState extends State<WsPBody> {
         "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
+  Future getImg3() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.wsPimg3 = image.path;
+      });
+    }
+    Globals.dtwsP3 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -388,8 +399,17 @@ class _WsPBodyState extends State<WsPBody> {
           TextButton(
             onPressed: () => getImg2(),
             child: Globals.wsPimg2 == null
-                ? Text("Select Mould Image")
-                : Text("Image Uploaded! for Mould"),
+                ? Text("Select Mould Left Image")
+                : Text("Image Uploaded! for Mould - Left"),
+          ),
+          Divider(
+            height: 10,
+          ),
+          TextButton(
+            onPressed: () => getImg3(),
+            child: Globals.wsPimg3 == null
+                ? Text("Select Mould Right Image")
+                : Text("Image Uploaded! for Mould - Right"),
           ),
           Divider(
             height: 50,

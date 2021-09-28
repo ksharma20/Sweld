@@ -95,6 +95,17 @@ class _WeldTrimState extends State<WeldTrim> {
         "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
   }
 
+  Future getImg2() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        Globals.wTimg2 = image.path;
+      });
+    }
+    Globals.dtwt2 =
+        "${DateTime.now().year.toString()}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')} ${DateTime.now().hour.toString().padLeft(2, '0')}-${DateTime.now().minute.toString().padLeft(2, '0')}";
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Colors.orange[50],
@@ -125,11 +136,29 @@ class _WeldTrimState extends State<WeldTrim> {
               Divider(
                 height: 50,
               ),
+              Center(
+                child: Text(
+                  "Click the Picture when Wedges \nare About to be Removed !",
+                  textScaleFactor: 1.2,
+                ),
+              ),
+              Divider(
+                height: 25,
+              ),
               TextButton(
                 onPressed: () => getImg1(),
                 child: Globals.wTimg1 == null
-                    ? Text("Image After Time is Completed")
+                    ? Text("Left Rail")
                     : Image.file(File(Globals.wTimg1!)),
+              ),
+              Divider(
+                height: 25,
+              ),
+              TextButton(
+                onPressed: () => getImg2(),
+                child: Globals.wTimg2 == null
+                    ? Text("Right Rail")
+                    : Image.file(File(Globals.wTimg2!)),
               ),
               Divider(
                 height: 50,

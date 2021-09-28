@@ -114,7 +114,7 @@ class _WsGmBodyState extends State<WsGmBody> {
             children: [
               Text(
                 "Gap Measurement and Alignment",
-                textScaleFactor: 2,
+                textScaleFactor: 1.5,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -138,7 +138,7 @@ class _WsGmBodyState extends State<WsGmBody> {
                     },
                     decoration: InputDecoration(
                       labelText: "Gap",
-                      hintText: "In mm",
+                      hintText: "Permissible ± 1mm",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide: BorderSide(),
@@ -232,8 +232,8 @@ class _WsGmBodyState extends State<WsGmBody> {
                         ),
                       ),
                     ),
-                    hint: Text(
-                        Globals.eckw ?? "Ends Cleaned by Kerosene oil & wire-brush"),
+                    hint: Text(Globals.eckw ??
+                        "Ends Cleaned by Kerosene oil & wire-brush"),
                     isExpanded: true,
                     items: <String>[
                       'Select Ends Cleaned by..',
@@ -369,35 +369,6 @@ class _WsGmBodyState extends State<WsGmBody> {
                   ),
                   Divider(
                     height: 5,
-                  ),
-                  DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide: BorderSide(
-                          color: Colors.black,
-                          style: BorderStyle.solid,
-                          width: 1.5,
-                        ),
-                      ),
-                    ),
-                    hint: Text("Fastening of 5 adjacent sleeper reward"),
-                    isExpanded: true,
-                    items: <String>[
-                      'Select Sleeper reward',
-                      'Yes 5 adjacent sleeper reward',
-                      'No 5 adjacent sleeper reward'
-                    ].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (val) {
-                      setState(() {
-                        Globals.fasr = val;
-                      });
-                    },
                   ),
                 ],
               ),

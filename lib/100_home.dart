@@ -22,13 +22,13 @@ class _HomeState extends State<Home> {
 
   Widget inPro() {
     if (Globals.pageNum == 100) {
-      return Text("No Process Started Yet \nStart a New Weld");
+      return Text(" No Process Started Yet \n Start a New Weld");
     } else if (Globals.pageNum < 260) {
       return Text(
-          "Weld Started at ${Globals.dt211} \nProcess ID : ${Globals.pageNum} ");
+          " Weld Started at ${Globals.dt211} \n Process ID : ${Globals.pageNum} ");
     } else {
       return Text(
-          "Started Process has Already passed the Setup Process !. \nTherefore Start a New Weld");
+          " Started Process has Already passed the Setup Process !. \n  Therefore Start a New Weld");
     }
   }
 
@@ -59,7 +59,10 @@ class _HomeState extends State<Home> {
         drawer: Drawer(
           child: ListView(
             children: [
-              DrawerHeader(child: Text("Menu")),
+              ListTile(
+                title: Text("Menu"),
+                contentPadding: EdgeInsets.only(bottom: 10, top: 20, left: 15),
+              ),
               ListTile(
                 title: Text("Home"),
                 onTap: () => Globals.gotoHome(context),
@@ -154,25 +157,21 @@ class _HomeState extends State<Home> {
               ),
               Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Globals.opdfName == null
-                        ? Center(
-                            child:
-                                Text("Finished PDF files will be Shown Here."),
-                          )
-                        : TextButton(
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return ViewPDF(pathPDF: Globals.opdfName);
-                                //open viewPDF page on click
-                              }));
-                            },
-                            child: Text(
-                                "Click to view Latest Generated pdf Report"),
-                          ),
-                  ),
+                  Globals.opdfName == null
+                      ? TextButton(
+                          onPressed: () => Globals.gotoFin(context),
+                          child: Text(" Check Generated PDF Reports"))
+                      : TextButton(
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return ViewPDF(pathPDF: Globals.opdfName);
+                              //open viewPDF page on click
+                            }));
+                          },
+                          child:
+                              Text("Click to view Latest Generated pdf Report"),
+                        ),
                 ],
               ),
             ],
@@ -211,8 +210,14 @@ class _HomeState extends State<Home> {
           await Permission.manageExternalStorage.request();
           showDialog(
               context: context,
-              builder: (context) => Text(
-                  "Permissions Not Granted. ThereFore App is Not going to Work"));
+              builder: (context) => Container(
+                    child: Center(
+                      child: Text(
+                        "Permissions Not Granted.\nThereFore App is Not going to Work",
+                        textScaleFactor: 2,
+                      ),
+                    ),
+                  ));
           final path = await Directory("storage/emulated/0/sweld").create();
           Globals.appDir = path.path;
         }
@@ -246,7 +251,6 @@ class _HomeState extends State<Home> {
     Globals.etime = null;
     Globals.welder = null;
     Globals.deptcont = null;
-    Globals.dept = null;
     Globals.agency = null;
     Globals.avc = null;
     Globals.supervisor = null;
@@ -270,7 +274,6 @@ class _HomeState extends State<Home> {
     Globals.fbe = null;
     Globals.lateral = null;
     Globals.vertical = null;
-    Globals.fasr = null;
     Globals.pms = null;
     Globals.datepor = null;
     Globals.porno = null;

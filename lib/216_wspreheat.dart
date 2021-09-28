@@ -102,7 +102,7 @@ class _WsPhBodyState extends State<WsPhBody> {
                         ),
                       ),
                     ),
-                    hint: Text("Preheating Technique"),
+                    hint: Text(Globals.pretec ?? "Preheating Technique"),
                     isExpanded: true,
                     items: <String>[
                       'Select Technique',
@@ -117,100 +117,34 @@ class _WsPhBodyState extends State<WsPhBody> {
                     }).toList(),
                     onChanged: (val) {
                       setState(() {
-                        setState(() {
-                          Globals.pretec = val;
-                        });
+                        Globals.pretec = val;
                       });
+                      if (val == 'Air Petrol Mixture') {
+                        setState(() {
+                          Globals.pretimeMin = 12;
+                          Globals.pretimeSec = 0;
+                        });
+                        Globals.airpre = "7 ± 0.7 kg/cm²";
+                      } else if (val == 'Compress Air Petrol') {
+                        setState(() {
+                          Globals.pretimeMin = 4;
+                          Globals.pretimeSec = 30;
+                        });
+                        Globals.airpre = "0.2 - 0.3 kg/cm²";
+                      } else if (val == 'Oxy - LPG Mix') {
+                        setState(() {
+                          Globals.pretimeMin = 2;
+                          Globals.pretimeSec = 30;
+                        });
+                        Globals.oxygenpre = "7 - 8 kg/cm²";
+                        Globals.lpgpre = "2 - 2.5 kg/cm²";
+                      }
                     },
                   ),
                   Divider(
-                    height: 5,
+                    height: 30,
                   ),
-                  TextFormField(
-                    initialValue: Globals.pretime.toString(),
-                    onChanged: (val) {
-                      Globals.pretime = int.parse(val);
-                    },
-                    decoration: InputDecoration(
-                      labelText: "Preheating Time",
-                      hintText: "in mins",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide: BorderSide(),
-                        gapPadding: 5,
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    height: 5,
-                  ),
-                  (Globals.pretec == 'Air Petrol Mixture' ||
-                          Globals.pretec == 'Compress Air Petrol')
-                      ? TextFormField(
-                          initialValue: Globals.airpre,
-                          onChanged: (val) {
-                            setState(() {
-                              Globals.airpre = val;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            labelText: "Air Pressure",
-                            hintText: "In kg/cm^2",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(),
-                              gapPadding: 5,
-                            ),
-                          ),
-                        )
-                      : Divider(),
-                  Divider(
-                    height: 5,
-                  ),
-                  Globals.pretec == 'Oxy - LPG Mix'
-                      ? TextFormField(
-                          initialValue: Globals.oxygenpre,
-                          onChanged: (val) {
-                            setState(() {
-                              Globals.oxygenpre = val;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            labelText: "Oxygen Pressure",
-                            hintText: "In kg/cm^2",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(),
-                              gapPadding: 5,
-                            ),
-                          ),
-                        )
-                      : Divider(),
-                  Divider(
-                    height: 5,
-                  ),
-                  Globals.pretec == 'Oxy - LPG Mix'
-                      ? TextFormField(
-                          initialValue: Globals.lpgpre,
-                          onChanged: (val) {
-                            setState(() {
-                              Globals.lpgpre = val;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            labelText: "LPG Pressure",
-                            hintText: "In kg/cm^2",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(),
-                              gapPadding: 5,
-                            ),
-                          ),
-                        )
-                      : Divider(),
-                  Divider(
-                    height: 5,
-                  ),
+                  preHeatTime(),
                 ],
               ),
             ),
@@ -221,5 +155,85 @@ class _WsPhBodyState extends State<WsPhBody> {
         ],
       ),
     );
+  }
+
+  Widget preHeatTime() {
+    if (Globals.pretec == 'Air Petrol Mixture') {
+      // setState(() {
+      //   Globals.pretimeMin = 12;
+      //   Globals.pretimeSec = 0;
+      // });
+      Globals.airpre = "7 ± 0.7 kg/cm²";
+      return Column(
+        children: [
+          Text(
+            "Preheating Time = ${Globals.pretimeMin}min ${Globals.pretimeSec}sec",
+            textScaleFactor: 1.5,
+          ),
+          Divider(
+            height: 25,
+          ),
+          Text(
+            "Air Pressure = ${Globals.airpre}",
+            textScaleFactor: 1.5,
+          ),
+        ],
+      );
+    } else if (Globals.pretec == 'Compress Air Petrol') {
+      // setState(() {
+      //   Globals.pretimeMin = 4;
+      //   Globals.pretimeSec = 30;
+      // });
+      Globals.airpre = "0.2 - 0.3 kg/cm²";
+      return Column(
+        children: [
+          Text(
+            "Preheating Time = ${Globals.pretimeMin}min ${Globals.pretimeSec}sec",
+            textScaleFactor: 1.5,
+          ),
+          Divider(
+            height: 25,
+          ),
+          Text(
+            "Air Pressure = ${Globals.airpre}",
+            textScaleFactor: 1.5,
+          ),
+        ],
+      );
+    } else if (Globals.pretec == 'Oxy - LPG Mix') {
+      // setState(() {
+      //   Globals.pretimeMin = 2;
+      //   Globals.pretimeSec = 30;
+      // });
+      Globals.oxygenpre = "7 - 8 kg/cm²";
+      Globals.lpgpre = "2 - 2.5 kg/cm²";
+      return Column(
+        children: [
+          Text(
+            "Preheating Time = ${Globals.pretimeMin}min ${Globals.pretimeSec}sec",
+            textScaleFactor: 1.5,
+          ),
+          Divider(
+            height: 25,
+          ),
+          Text(
+            "Oxygen Pressure = ${Globals.oxygenpre}",
+            textScaleFactor: 1.5,
+          ),
+          Divider(
+            height: 25,
+          ),
+          Text(
+            "LPG Pressure = ${Globals.lpgpre}",
+            textScaleFactor: 1.5,
+          ),
+        ],
+      );
+    } else {
+      return Text(
+        "Technique Yet to Be Selected...",
+        textScaleFactor: 1.5,
+      );
+    }
   }
 }

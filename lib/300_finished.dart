@@ -55,7 +55,7 @@ class _FinishedWelds extends State<FinishedWelds> {
         body: files == null
             ? Center(
                 child: Text(
-                "Searching Files",
+                "No PDF Report Generated Yet.... !",
                 textScaleFactor: 2,
               ))
             : ListView.builder(
