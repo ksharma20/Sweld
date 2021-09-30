@@ -166,7 +166,7 @@ class _PdfGenState extends State<PdfGen> {
                     _loading
                         ? CircularProgressIndicator(
                             color: Colors.redAccent,
-                            // minHeight: 5,
+                            strokeWidth: 5,
                             semanticsLabel: "Pdf Being Generated",
                           )
                         : Divider(
@@ -201,7 +201,7 @@ class _PdfGenState extends State<PdfGen> {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                             Future.delayed(
-                              Duration(milliseconds: 250),
+                              Duration(milliseconds: 300),
                               () => createPdf(),
                             );
                           },
