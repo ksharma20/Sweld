@@ -9,6 +9,8 @@ visit [Github.com/ksharma20/Sweld](https://www.github.com/ksharma20/Sweld/)
 
 Download [**app-release.apk**](/build/app/outputs/flutter-apk/app-release.apk) to install.
 
+## To build it After Changes
+```flutter build apk```
 
 ===========================================================================================
 ## Sweld - Smart Weld
