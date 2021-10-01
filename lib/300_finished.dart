@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_file_manager/flutter_file_manager.dart';
+import 'package:share/share.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'globals.dart';
-import 'package:share/share.dart';
 
 void main() => runApp(MyApp());
 

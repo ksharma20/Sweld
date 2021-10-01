@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
+
 import 'globals.dart';
-import 'dart:async';
 
 class PdfGen extends StatefulWidget {
   const PdfGen({Key? key}) : super(key: key);
@@ -201,7 +203,7 @@ class _PdfGenState extends State<PdfGen> {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                             Future.delayed(
-                              Duration(milliseconds: 300),
+                              Duration(milliseconds: 500),
                               () => createPdf(),
                             );
                           },
@@ -274,6 +276,9 @@ class _PdfGenState extends State<PdfGen> {
     if (Globals.wsPimg2 != null) {
       addPage(Globals.wsPimg2);
     }
+    if (Globals.wsPimg3 != null) {
+      addPage(Globals.wsPimg3);
+    }
     addPage(Globals.ss216);
 
     if (Globals.rimg1 != null) {
@@ -285,13 +290,28 @@ class _PdfGenState extends State<PdfGen> {
     if (Globals.iimg1 != null) {
       addPage(Globals.iimg1);
     }
+    if (Globals.iimg2 != null) {
+      addPage(Globals.iimg2);
+    }
     if (Globals.wTimg1 != null) {
       addPage(Globals.wTimg1);
+    }
+    if (Globals.wTimg2 != null) {
+      addPage(Globals.wTimg2);
     }
     addPage(Globals.ss250);
 
     if (Globals.gimg1 != null) {
       addPage(Globals.gimg1);
+    }
+    if (Globals.gimg2 != null) {
+      addPage(Globals.gimg2);
+    }
+    if (Globals.gimg3 != null) {
+      addPage(Globals.gimg3);
+    }
+    if (Globals.gimg4 != null) {
+      addPage(Globals.gimg4);
     }
 
 //Saves the document

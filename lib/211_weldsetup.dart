@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:sweld/globals.dart';
-import 'package:geolocator/geolocator.dart';
 
 class WeldSetup extends StatefulWidget {
   WeldSetup({Key? key}) : super(key: key);

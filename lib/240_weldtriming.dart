@@ -1,8 +1,8 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sweld/globals.dart';
-import 'dart:async';
 
 class ButtonWidget extends StatelessWidget {
   final String text;

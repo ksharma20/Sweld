@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:sweld/400_manuals.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:sweld/400_manuals.dart';
 
 class Globals {
 // Required Variable
